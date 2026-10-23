@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResumeAI | Smart Resume Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="/" class="logo">
+            <span class="logo-icon">AI</span>
+            <span>
+                <strong>ResumeAI</strong>
+                <small>Smart Resume Analyzer</small>
+            </span>
+        </a>
+
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#jobs">Job Matching</a>
+        </div>
+
+        <a href="#upload" class="nav-button">Get Started →</a>
+    </nav>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <span class="badge">✦ AI-POWERED RESUME ANALYSIS</span>
+
+                <h1>
+                    Your Career.<br>
+                    Your Skills.<br>
+                    Your Next <span>Opportunity.</span>
+                </h1>
+
+                <p>
+                    Upload your resume, discover your skills, and explore
+                    job opportunities that match your profile.
+                </p>
+
+                <a href="#upload" class="primary-button">
+                    ☁ Upload Your Resume <span>→</span>
+                </a>
+
+                <div class="upload-info">
+                    ✓ PDF & DOCX supported &nbsp; | &nbsp; Maximum size: 5 MB
+                </div>
+
+                <div class="trust-info">
+                    <span>🤖 Smart Analysis</span>
+                    <span>🔒 Secure Processing</span>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="glow"></div>
+
+                <div class="floating-card ai-card">
+                    <span class="visual-icon">✳</span>
+                    <div>
+                        <strong>AI Analysis</strong>
+                        <small>Smart resume scanning</small>
+                    </div>
+                </div>
+
+                <div class="resume-preview">
+                    <div class="resume-heading">
+                        <div class="avatar">👤</div>
+                        <div>
+                            <h3>RESUME PROFILE</h3>
+                            <p>Professional Information</p>
+                        </div>
+                    </div>
+
+                    <div class="fake-line wide"></div>
+                    <div class="fake-line medium"></div>
+
+                    <h4>💻 Technical Skills</h4>
+
+                    <div class="skill-tags">
+                        <span>Python</span>
+                        <span>SQL</span>
+                        <span>HTML</span>
+                        <span>JavaScript</span>
+                    </div>
+
+                    <h4>🎓 Education</h4>
+                    <div class="fake-line wide"></div>
+                    <div class="fake-line medium"></div>
+
+                    <div class="analysis-status">
+                        <span class="status-dot"></span>
+                        Ready for analysis
+                    </div>
+                </div>
+
+                <div class="floating-card match-card">
+                    <div class="match-icon">🎯</div>
+                    <strong>Smart Matching</strong>
+                    <small>Find suitable jobs</small>
+                </div>
+
+                <div class="floating-card opportunity-card">
+                    <div class="match-icon">💼</div>
+                    <strong>Career Opportunities</strong>
+                    <small>Discover your next step</small>
+                </div>
+            </div>
+        </section>
+
+        <section class="upload-section" id="upload">
+            <div class="section-heading">
+                <span class="badge">GET STARTED</span>
+                <h2>Let AI Understand Your Resume</h2>
+                <p>Upload your resume and get insights into your professional profile.</p>
+            </div>
+
+            <div class="upload-panel">
+                <div class="upload-symbol">↑</div>
+                <h3>Upload Your Resume</h3>
+                <p>Choose a PDF or DOCX file from your computer.</p>
+
+                <form action="{{ url_for('upload_resume') }}"
+                      method="POST"
+                      enctype="multipart/form-data">
+
+                    <label for="resume" class="file-label">
+                        Choose Resume
+                    </label>
+
+                    <input type="file"
+                           id="resume"
+                           name="resume"
+                           accept=".pdf,.docx"
+                           required>
+
+                    <p id="file-name">No file selected</p>
+
+                    <button type="submit" class="primary-button">
+                        Analyze My Resume →
+                    </button>
+                </form>
+
+                <small class="privacy-note">
+                    PDF or DOCX · Maximum file size 5 MB
+                </small>
+            </div>
+        </section>
+
+        <section class="features-section" id="features">
+            <div class="section-heading">
+                <span class="badge">WHAT WE OFFER</span>
+                <h2>Powerful Features for Your Career</h2>
+                <p>Everything you need to understand your resume better.</p>
+            </div>
+
+            <div class="feature-grid">
+                <article class="feature-card">
+                    <div class="feature-icon blue">▤</div>
+                    <h3>Resume Parsing</h3>
+                    <p>Extract names, contact details, education and other information from your resume.</p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon green">⚙</div>
+                    <h3>Skill Detection</h3>
+                    <p>Identify technical skills mentioned in your resume automatically.</p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon purple">◎</div>
+                    <h3>Job Matching</h3>
+                    <p>Compare your skills with job requirements to find relevant opportunities.</p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon orange">↗</div>
+                    <h3>Skill Gap Analysis</h3>
+                    <p>Discover skills you may need to learn for your target career.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="workflow-section" id="how-it-works">
+            <div class="section-heading">
+                <span class="badge">SIMPLE PROCESS</span>
+                <h2>How It Works</h2>
+                <p>Three simple steps to get started.</p>
+            </div>
+
+            <div class="workflow-grid">
+                <article class="workflow-card">
+                    <span class="step-number">01</span>
+                    <div class="workflow-icon">☁</div>
+                    <h3>Upload Resume</h3>
+                    <p>Select your resume in PDF or DOCX format.</p>
+                </article>
+
+                <article class="workflow-card">
+                    <span class="step-number">02</span>
+                    <div class="workflow-icon">✳</div>
+                    <h3>AI Analysis</h3>
+                    <p>Extract important details and detect your skills.</p>
+                </article>
+
+                <article class="workflow-card">
+                    <span class="step-number">03</span>
+                    <div class="workflow-icon">✓</div>
+                    <h3>Explore Results</h3>
+                    <p>Review your extracted information and skill profile.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="jobs-section" id="jobs">
+            <div class="section-heading">
+                <span class="badge">YOUR CAREER JOURNEY</span>
+                <h2>Explore Career Possibilities</h2>
+                <p>Your skills can help you identify career paths worth exploring.</p>
+            </div>
+
+            <div class="job-grid">
+                <article class="job-card">
+                    <div class="job-icon">💻</div>
+                    <h3>Software Developer</h3>
+                    <p>Programming · Problem Solving</p>
+                    <span>Technology</span>
+                </article>
+
+                <article class="job-card">
+                    <div class="job-icon">📊</div>
+                    <h3>Data Analyst</h3>
+                    <p>SQL · Python · Data Analysis</p>
+                    <span>Data & Analytics</span>
+                </article>
+
+                <article class="job-card">
+                    <div class="job-icon">🌐</div>
+                    <h3>Web Developer</h3>
+                    <p>HTML · CSS · JavaScript</p>
+                    <span>Web Development</span>
+                </article>
+            </div>
+
+            <p class="job-disclaimer">
+                These are example career paths, not personalized recommendations.
+                Personalized matching can be added to the analysis results.
+            </p>
+
+            <a href="#upload" class="secondary-button">Analyze Your Resume →</a>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <a href="/" class="logo footer-logo">
+            <span class="logo-icon">AI</span>
+            <span>
+                <strong>ResumeAI</strong>
+                <small>Smart Resume Analyzer</small>
+            </span>
+        </a>
+
+        <p>Helping you discover your skills and career possibilities.</p>
+        <small>© 2026 ResumeAI · Academic Project</small>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

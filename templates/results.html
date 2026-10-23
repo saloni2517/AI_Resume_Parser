@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Resume Analysis | ResumeAI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="results-page">
+
+    <nav class="navbar">
+        <a href="/" class="logo">
+            <span class="logo-icon">AI</span>
+            <span>
+                <strong>ResumeAI</strong>
+                <small>Smart Resume Analyzer</small>
+            </span>
+        </a>
+
+        <a href="{{ url_for('home') }}" class="nav-button">
+            ← Back to Home
+        </a>
+    </nav>
+
+    <main class="results-container">
+
+        <section class="results-heading">
+            <span class="badge">✦ ANALYSIS COMPLETE</span>
+
+            <h1>Your Resume Insights</h1>
+
+            <p>
+                Here's a summary of the information extracted from your resume.
+            </p>
+        </section>
+
+        <section class="profile-card">
+            <div class="profile-avatar">👤</div>
+
+            <div class="profile-details">
+                <span class="profile-label">RESUME PROFILE</span>
+
+                <h2>{{ result.name }}</h2>
+
+                <p>✉ {{ result.email }}</p>
+                <p>☎ {{ result.phone }}</p>
+            </div>
+
+            <div class="profile-status">
+                <span class="status-dot"></span>
+                Resume Processed
+            </div>
+        </section>
+
+        <section class="overview-grid">
+
+            <article class="overview-card">
+                <div class="overview-icon blue">▤</div>
+                <p>Skills Detected</p>
+                <h2>{{ result.skills | length }}</h2>
+                <small>Matching known skills</small>
+            </article>
+
+            <article class="overview-card">
+                <div class="overview-icon green">🎓</div>
+                <p>Education Keywords</p>
+                <h2>{{ result.education | length }}</h2>
+                <small>Keywords identified</small>
+            </article>
+
+            <article class="overview-card">
+                <div class="overview-icon purple">📄</div>
+                <p>Resume Text</p>
+                <h2>{{ result.resume_text.split() | length }}</h2>
+                <small>Words extracted</small>
+            </article>
+
+        </section>
+
+        <section class="result-card">
+            <div class="result-card-heading">
+                <div>
+                    <span class="section-kicker">YOUR EXPERTISE</span>
+                    <h2>Technical Skills</h2>
+                </div>
+
+                <span class="small-count">
+                    {{ result.skills | length }} detected
+                </span>
+            </div>
+
+            {% if result.skills %}
+                <div class="result-skill-list">
+                    {% for skill in result.skills %}
+                        <span class="result-skill">
+                            <span>✓</span> {{ skill }}
+                        </span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="empty-state">
+                    <span>💡</span>
+                    <p>No matching skills were detected.</p>
+                    <small>Try uploading a resume containing your technical skills.</small>
+                </div>
+            {% endif %}
+        </section>
+
+        <section class="result-card">
+            <div class="result-card-heading">
+                <div>
+                    <span class="section-kicker">ACADEMIC BACKGROUND</span>
+                    <h2>Education Overview</h2>
+                </div>
+                <span class="education-icon">🎓</span>
+            </div>
+
+            {% if result.education %}
+                <div class="education-list">
+                    {% for item in result.education %}
+                        <div class="education-item">
+                            <span class="education-check">✓</span>
+                            <div>
+                                <strong>{{ item }}</strong>
+                                <p>Education keyword found in resume</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="empty-state">
+                    <span>📚</span>
+                    <p>No education keywords were detected.</p>
+                </div>
+            {% endif %}
+        </section>
+
+        <section class="next-step-card">
+            <div>
+                <span class="section-kicker">NEXT STEP</span>
+                <h2>Ready to explore your career options?</h2>
+                <p>
+                    Review your skills and identify job roles that suit
+                    your interests and experience.
+                </p>
+            </div>
+
+            <a href="{{ url_for('home') }}" class="primary-button">
+                Analyze Another Resume →
+            </a>
+        </section>
+
+        <p class="results-disclaimer">
+            Results are automatically extracted from your resume and may
+            require manual verification.
+        </p>
+
+    </main>
+
+    <footer class="footer">
+        <a href="/" class="logo footer-logo">
+            <span class="logo-icon">AI</span>
+            <span>
+                <strong>ResumeAI</strong>
+                <small>Smart Resume Analyzer</small>
+            </span>
+        </a>
+
+        <small>© 2026 ResumeAI · Academic Project</small>
+    </footer>
+
+</body>
+</html>
